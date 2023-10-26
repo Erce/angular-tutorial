@@ -1,0 +1,26 @@
+:root {
+  --white: #fff;
+  --lighter-gray: #e3e3e3;
+  --light-gray: #6e6e6e;
+  --dark-gray: #333;
+  --green: #00ab35;
+}
+
+body {
+  margin: 0;
+  color: var(--dark-gray);
+  font: 16px sans-serif;
+  box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+mi-root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}

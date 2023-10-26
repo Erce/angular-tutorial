@@ -1,0 +1,24 @@
+<div class="wrapper">
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Video Name</th>
+        <th>Author</th>
+        <th>Categories</th>
+        <th>Options</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr *ngFor="let video of videos; index as i; first as isFirst">
+        <td>{{ video.name }}</td>
+        <td>{{ video.author }}</td>
+        <td>{{ video.categories.join(", ") }}</td>
+        <td>
+          <mi-button [text]="'Edit'"></mi-button>
+          <mi-button [text]="'Delete'"></mi-button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
