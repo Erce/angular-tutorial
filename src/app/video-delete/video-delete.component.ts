@@ -20,8 +20,4 @@ export class VideoDeleteComponent {
   dialogRef = inject(MatDialogRef<VideoDeleteComponent>);
   data: ProcessedVideo = inject(MAT_DIALOG_DATA);
   buttonType = ButtonType;
-
-  onNoClick(): void {
-    this.dialogRef.close();
-  }
 }

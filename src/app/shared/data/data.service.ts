@@ -36,23 +36,6 @@ export class DataService {
     }));
   }
 
-  addVideoToSelectedAuthor(videoContols: VideoForm): Observable<AddVideoResponse> {
-    const authorId = videoContols.author.value.id;
-    const videoId = this.maxId.getValue() + 1
-    this.maxId.next(videoId);
-
-    const author = {...videoContols.author.value};
-    author.videos.push({
-      id: this.maxId.getValue(),
-      catIds: videoContols.categories.value,
-      name: videoContols.name.value,
-      formats: DEFAULT_FORMAT,
-      releaseDate: new Date().toISOString().split('T')[0],
-    });
-
-    return this.http.put<AddVideoResponse>(`${API}/authors/${authorId}`, author);
-  }
-
   getVideos(): Observable<ProcessedVideo[]> {
     return combineLatest([this.getAuthors(), this.getCategories()]).pipe(
       map(([authors, categories]) => {
@@ -63,12 +46,13 @@ export class DataService {
             id: video.id,
             name: video.name,
             author: author.name,
+            authorId: author.id,
             categories: video.catIds.map((id) => categories.find(el => el.id === id)?.name ?? ''),
             releaseDate: video.releaseDate,
             highestQuality: {...this.getTheHighestQuality(video.formats)}
           }));
-        })
-      
+        });
+
         return videos;
       })
     );
@@ -87,5 +71,30 @@ export class DataService {
     });
 
     return max;
+  }
+
+  addVideoToSelectedAuthor(videoContols: VideoForm): Observable<AddVideoResponse> {
+    const authorId = videoContols.author.value.id;
+    const videoId = this.maxId.getValue() + 1
+    this.maxId.next(videoId);
+
+    const author = {...videoContols.author.value};
+    author.videos.push({
+      id: this.maxId.getValue(),
+      catIds: videoContols.categories.value,
+      name: videoContols.name.value,
+      formats: DEFAULT_FORMAT,
+      releaseDate: new Date().toISOString().split('T')[0],
+    });
+
+    return this.http.put<AddVideoResponse>(`${API}/authors/${authorId}`, author);
+  }
+
+  deleteVideo(authorId: number, videoId: number) {
+    const author = this.authors.getValue().find((author) => author.id === authorId);
+    const videoIndex = author?.videos.findIndex((video) => video.id === videoId);
+    if (videoIndex) author?.videos.splice(videoIndex, 1);
+
+    return this.http.put<AddVideoResponse>(`${API}/authors/${authorId}`, author);
   }
 }
