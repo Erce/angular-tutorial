@@ -5,11 +5,15 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ButtonComponent } from './button/button.component';
-import { VideosTableComponent } from './videos-table/videos-table.component';
 
 @NgModule({
-  declarations: [AppComponent, ButtonComponent, VideosTableComponent],
-  imports: [BrowserModule, HttpClientModule, AppRoutingModule],
+  declarations: [AppComponent],
+  imports: [
+    AppRoutingModule,
+    ButtonComponent,
+    BrowserModule,
+    HttpClientModule,
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })

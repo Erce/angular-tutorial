@@ -1,3 +1,7 @@
+:host {
+  margin: 2px;
+}
+
 .button {
   padding: 8px;
   border: none;
@@ -9,4 +13,8 @@
 
 .primary {
   background: var(--green);
+}
+
+.delete {
+  background: var(--red);
 }

@@ -9,7 +9,15 @@
 
 .table th,
 .table td {
-  padding: 16px;
+  padding: 12px 23px;
   border: 1px solid;
   text-align: left;
+}
+
+.table tr:nth-child(odd):not(thead>tr) {
+  background: var(--lighter-gray);
+}
+
+.options-column {
+  width: 150px;
 }

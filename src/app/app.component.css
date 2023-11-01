@@ -1,3 +1,10 @@
+.navigation {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
 .header {
   display: flex;
   justify-content: space-between;

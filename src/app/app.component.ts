@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
-
-import { ProcessedVideo } from './interfaces';
+import { ButtonType } from './button/button-type';
 
 @Component({
   selector: 'mi-root',
@@ -8,6 +7,5 @@ import { ProcessedVideo } from './interfaces';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
-  videos: ProcessedVideo[] = [];
-  constructor() {}
+  protected readonly buttonType = ButtonType;
 }
