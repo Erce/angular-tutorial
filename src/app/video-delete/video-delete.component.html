@@ -1,8 +1,8 @@
 <mat-dialog-content>
-  <!-- <p>This will delete the video with the name: {{ data.name }}</p> -->
+  <p>This will delete the video with the name: {{ data.name }}</p>
   <p>Are you sure?</p>
 </mat-dialog-content>
-<mat-dialog-actions>
-  <button mat-button mat-dialog-close>Cancel</button>
-  <button mat-button [mat-dialog-close]="true">Delete</button>
+<mat-dialog-actions align="end">
+  <mi-button [text]="'Cancel'" [buttonType]="buttonType.danger" mat-button mat-dialog-close></mi-button>
+  <mi-button [text]="'Delete'" [buttonType]="buttonType.primary" mat-button [mat-dialog-close]="true" cdkFocusInitial></mi-button>
 </mat-dialog-actions>

@@ -3,8 +3,12 @@
   --lighter-gray: #e3e3e3;
   --light-gray: #6e6e6e;
   --dark-gray: #333;
+  --light-blue: #50b9d3;
+  --blue: #39a2bd;
+  --light-green: #33b15b;
   --green: #00ab35;
-  --red: #fd3838;
+  --light-red: #ff4949;
+  --red: #ff2929;
 }
 
 body {

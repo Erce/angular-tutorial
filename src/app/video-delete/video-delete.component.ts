@@ -1,17 +1,25 @@
 import { CommonModule } from '@angular/common';
-import { Component, Inject, inject } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
+import { ProcessedVideo } from '../interfaces';
+import { ButtonType } from '../button/button-type';
+import { ButtonComponent } from '../button/button.component';
 
 @Component({
   selector: 'mi-video-delete',
   templateUrl: './video-delete.component.html',
   styleUrls: ['./video-delete.component.css'],
   standalone: true,
-  imports: [CommonModule, MatDialogModule],
+  imports: [
+    CommonModule,
+    MatDialogModule,
+    ButtonComponent
+  ],
 })
 export class VideoDeleteComponent {
   dialogRef = inject(MatDialogRef<VideoDeleteComponent>);
-  @Inject(MAT_DIALOG_DATA) data: any;
+  data: ProcessedVideo = inject(MAT_DIALOG_DATA);
+  buttonType = ButtonType;
 
   onNoClick(): void {
     this.dialogRef.close();

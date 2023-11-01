@@ -1,5 +1,6 @@
 export enum ButtonType {
     primary = 'primary',
-    delete = 'delete',
+    danger = 'danger',
+    edit = 'edit',
     noStyle = 'no-style'
 }

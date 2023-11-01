@@ -5,6 +5,10 @@
   gap: 15px;
 }
 
+.navigation span:hover {
+  font-weight: 600;
+}
+
 .header {
   display: flex;
   justify-content: space-between;

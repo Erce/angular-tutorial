@@ -11,10 +11,27 @@
   background: var(--light-gray);
 }
 
+.edit {
+
+  background: var(--blue);
+}
+.edit:hover,
+.edit:focus {
+  background: var(--light-blue);
+}
+
 .primary {
   background: var(--green);
 }
+.primary:hover,
+.primary:focus {
+  background: var(--light-green);
+}
 
-.delete {
+.danger {
   background: var(--red);
+}
+.danger:hover,
+.danger:focus {
+  background: var(--light-red);
 }
