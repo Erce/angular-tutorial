@@ -9,6 +9,9 @@
   --green: #00ab35;
   --light-red: #ff4949;
   --red: #ff2929;
+  --title-border-color: #ddd;
+  --form-element-border-color: #ccc;
+  --form-element-focus-border-color: #baefff;
 }
 
 body {

@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
-import { ButtonType } from './button-type';
+import { ButtonType } from '../shared/types/button-type';
 
 @Component({
   selector: 'mi-button',
@@ -12,4 +12,5 @@ import { ButtonType } from './button-type';
 export class ButtonComponent {
   @Input() buttonType = ButtonType.noStyle;
   @Input() text: string = 'Button';
+  @Input() disabled = false;
 }

@@ -1,8 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
-import { ProcessedVideo } from '../interfaces';
-import { ButtonType } from '../button/button-type';
+import { ProcessedVideo } from '../shared/data/interfaces';
+import { ButtonType } from '../shared/types/button-type';
 import { ButtonComponent } from '../button/button.component';
 
 @Component({

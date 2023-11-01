@@ -11,12 +11,23 @@
   background: var(--light-gray);
 }
 
-.edit {
+.button:disabled {
+  background: var(--light-gray);
+  color: var(--dark-gray);
+}
 
+.edit {
   background: var(--blue);
 }
 .edit:hover,
 .edit:focus {
+  background: var(--light-blue);
+}
+
+.submit {
+  background: var(--blue);
+}
+.submit:hover:not(:disabled) {
   background: var(--light-blue);
 }
 
@@ -34,4 +45,13 @@
 .danger:hover,
 .danger:focus {
   background: var(--light-red);
+}
+
+.cancel {
+  background: var(--light-gray);
+}
+.cancel:hover,
+.cancel:focus {
+  background: var(--lighter-gray);
+  color: var(--dark-gray);
 }

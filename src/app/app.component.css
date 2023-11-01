@@ -1,11 +1,12 @@
 .navigation {
-  cursor: pointer;
   display: flex;
   align-items: center;
   gap: 15px;
+  cursor: default;
 }
 
 .navigation span:hover {
+  cursor: pointer;
   font-weight: 600;
 }
 

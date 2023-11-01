@@ -1,0 +1,53 @@
+.title {
+    border-bottom: 1px solid var(--border-color);
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    padding: 40px 10px;
+    width: 100%;
+}
+
+.label {
+    width: 20%;
+}
+
+.form-element-container {
+    display: flex;
+    padding: 10px 0;
+    line-height: 30px;
+}
+
+.form-element-container input {
+    width: 100%;
+    border: 1px solid var(--form-element-border-color);
+    border-radius: 5px;
+}
+.form-element-container input:focus input:focus-visible {
+    border: 1px solid var(--form-element-focus-border-color);
+    border-radius: 5px;
+}
+
+input:focus-visible {
+    border: 1px solid var(--form-element-focus-border-color);
+}
+
+.form-element-container select {
+    border: 1px solid var(--form-element-border-color);
+    border-radius: 5px;
+    width: 100%;
+}
+
+.form-element-container .select-multiple {
+    border: 1px solid var(--form-element-border-color);
+    border-radius: 5px;
+    overflow: auto;
+    max-height: 100px;
+    padding: 5px 10px;
+}
+
+.action-buttons {
+    display: flex;
+    flex-direction: row-reverse;
+}

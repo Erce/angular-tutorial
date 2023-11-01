@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ButtonType } from './button/button-type';
+import { ButtonType } from './shared/types/button-type';
 
 @Component({
   selector: 'mi-root',

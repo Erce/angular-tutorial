@@ -1,9 +1,9 @@
 import { Component, Input, inject } from '@angular/core';
-import { ProcessedVideo } from '../interfaces';
+import { ProcessedVideo } from '../shared/data/interfaces';
 import { CommonModule } from '@angular/common';
 import { ButtonComponent } from '../button/button.component';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ButtonType } from '../button/button-type';
+import { ButtonType } from '../shared/types/button-type';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { VideoDeleteComponent } from '../video-delete/video-delete.component';
 
@@ -21,11 +21,11 @@ export class VideosTableComponent {
   @Input() videos: ProcessedVideo[] = [];
   protected readonly buttonType = ButtonType;
 
-  edit(video: ProcessedVideo) {
+  onEdit(video: ProcessedVideo) {
     this.router.navigate(['edit', video.id], { relativeTo: this.activatedRoute });
   }
 
-  delete(video: ProcessedVideo) {
+  onDelete(video: ProcessedVideo) {
     this.openDeleteDialog(video);
   }
 

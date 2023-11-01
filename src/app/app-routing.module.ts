@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { VideoAddComponent } from './video-add/video-add.component';
-import { VideoDeleteComponent } from './video-delete/video-delete.component';
 import { HomeComponent } from './home/home.component';
 
 const routes: Routes = [

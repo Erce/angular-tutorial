@@ -1,1 +1,30 @@
-<p>video-add works!</p>
+<div class="title">
+    <h1>{{ title }}</h1>
+</div>
+<div class="container">
+    <form [formGroup]="videoFormGroup">
+        <div class="form-element-container">
+            <label class="label">Video name</label>
+            <input type="text" formControlName="name" matInput>
+        </div>
+
+        <div class="form-element-container">
+            <label class="label">Video author</label>
+            <select formControlName="author">
+                <option *ngFor="let author of authors" [ngValue]="author">{{ author.name }}</option>
+            </select>
+        </div>
+
+        <div class="form-element-container">
+            <label class="label">Video category</label>
+            <select class="select-multiple" multiple formControlName="categories">
+                <option *ngFor="let category of categories" [ngValue]="category.id">{{ category.name }}</option>
+            </select>
+        </div>
+    </form>
+    <div class="action-buttons">
+        <mi-button [buttonType]="buttonType.submit" [text]="'Submit'" [disabled]="videoFormGroup.status === 'INVALID'" (click)="onSubmit()"></mi-button>
+        <mi-button [buttonType]="buttonType.cancel" [text]="'Cancel'" (click)="onCancel()"></mi-button>
+    </div>
+</div>
+
