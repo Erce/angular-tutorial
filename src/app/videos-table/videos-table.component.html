@@ -20,8 +20,8 @@
         <td>{{ video.highestQuality.format_name }} {{ video.highestQuality.res }}</td>
         <td>{{ video.releaseDate }}</td>
         <td class="options-column">
-          <mi-button (click)="edit(i)" [text]="'Edit'" [buttonType]="buttonType.primary"></mi-button>
-          <mi-button (click)="delete(i)" [text]="'Delete'" [buttonType]="buttonType.delete"></mi-button>
+          <mi-button (click)="edit(video)" [text]="'Edit'" [buttonType]="buttonType.primary"></mi-button>
+          <mi-button (click)="delete(video)" [text]="'Delete'" [buttonType]="buttonType.delete"></mi-button>
         </td>
       </tr>
     </tbody>

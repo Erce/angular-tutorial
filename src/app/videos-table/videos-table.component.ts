@@ -4,25 +4,38 @@ import { CommonModule } from '@angular/common';
 import { ButtonComponent } from '../button/button.component';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ButtonType } from '../button/button-type';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import { VideoDeleteComponent } from '../video-delete/video-delete.component';
 
 @Component({
   selector: 'mi-videos-table',
   standalone: true,
-  imports: [CommonModule, ButtonComponent],
+  imports: [CommonModule, ButtonComponent, MatDialogModule],
   templateUrl: './videos-table.component.html',
   styleUrls: ['./videos-table.component.css'],
 })
 export class VideosTableComponent {
   activatedRoute = inject(ActivatedRoute);
   router = inject(Router);
-  protected readonly buttonType = ButtonType;
+  dialog = inject(MatDialog);
   @Input() videos: ProcessedVideo[] = [];
+  protected readonly buttonType = ButtonType;
 
-  edit(id: number) {
-    this.router.navigate(['edit', id], { relativeTo: this.activatedRoute });
+  edit(video: ProcessedVideo) {
+    this.router.navigate(['edit', video.id], { relativeTo: this.activatedRoute });
   }
 
-  delete(id: number) {
-    this.router.navigate(['delete', id], { relativeTo: this.activatedRoute });
+  delete(video: ProcessedVideo) {
+    this.openDeleteDialog(video);
+  }
+
+  openDeleteDialog(video: ProcessedVideo) {
+    const dialogRef = this.dialog.open(VideoDeleteComponent, {
+      data: {name: video.name},
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) this.videos.splice(video.id, 1);
+    });
   }
 }
