@@ -4,7 +4,7 @@ import { Validators, ReactiveFormsModule, FormGroup, FormControl } from '@angula
 import { DataService } from '../shared/data/data.service';
 import { Subject, combineLatest, map, takeUntil } from 'rxjs';
 import { Author, Category } from '../shared/data/interfaces';
-import { VideoForm } from '../shared/video-add/video-add-interfaces';
+import { VideoForm } from '../shared/video-add-edit/video-add-edit-interfaces';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { ButtonComponent } from '../button/button.component';

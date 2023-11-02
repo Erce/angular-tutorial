@@ -14,7 +14,7 @@ import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { VideoDeleteComponent } from '../video-delete/video-delete.component';
 import { DataService } from '../shared/data/data.service';
 import { FormsModule } from '@angular/forms';
-import { SearchPipe } from '../shared/search.pipe';
+import { SearchPipe } from '../shared/pipes/search.pipe';
 
 @Component({
   selector: 'mi-videos-table',

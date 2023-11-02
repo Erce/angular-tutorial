@@ -5,8 +5,7 @@ import { BehaviorSubject, Observable, combineLatest, concat, map } from 'rxjs';
 
 import { API } from '../../constants';
 import { Author, Category, ProcessedVideo, Video } from './interfaces';
-import { PatchVideoResponse, VideoForm } from '../video-add/video-add-interfaces';
-
+import { PatchVideoResponse, VideoForm } from '../video-add-edit/video-add-edit-interfaces';
 
 const DEFAULT_FORMAT = { one: { res: '1080p', size: 1000 }};
 
