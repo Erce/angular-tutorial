@@ -1,3 +1,6 @@
+<div class="search-sort">
+  <input type="text" placeholder="Search" [(ngModel)]="searchArg"/>
+</div>
 <div class="wrapper">
   <table class="table">
     <thead>
@@ -12,7 +15,7 @@
     </thead>
 
     <tbody>
-      <tr *ngFor="let video of videos; index as i; first as isFirst">
+      <tr *ngFor="let video of videos | search: searchArg; index as i; first as isFirst">
         <td>{{ video.name }}</td>
         <td>{{ video.author }}</td>
         <td>{{ video.categories.join(", ") }}</td>
