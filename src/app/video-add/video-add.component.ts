@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Validators, ReactiveFormsModule, FormGroup, FormControl } from '@angular/forms';
 import { DataService } from '../shared/data/data.service';
-import { Subject, takeUntil } from 'rxjs';
+import { Subject, combineLatest, map, takeUntil } from 'rxjs';
 import { Author, Category } from '../shared/data/interfaces';
 import { VideoForm } from '../shared/video-add/video-add-interfaces';
 import { MatInputModule } from '@angular/material/input';
@@ -19,7 +19,7 @@ import { ActivatedRoute, Router } from '@angular/router';
     MatFormFieldModule,
     MatInputModule,
     ButtonComponent,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ],
   templateUrl: './video-add.component.html',
   styleUrls: ['./video-add.component.css']
@@ -30,35 +30,69 @@ export class VideoAddComponent implements OnInit, OnDestroy {
   router = inject(Router);
   private readonly destroy$ = new Subject<void>();
   protected readonly buttonType = ButtonType;
+  isAdd = true;
   categories: Category[] = [];
   authors: Author[] = [];
-  title: 'Add Video' | 'Edit Video' = 'Add Video';
-  videoFormGroup = new FormGroup<VideoForm>({
-    name: new FormControl<string>('', {nonNullable: true, validators: [Validators.required]}),
-    author: new FormControl<Author>(this.authors[0], {nonNullable: true, validators: [Validators.required]}),
-    categories: new FormControl([], {nonNullable: true, validators: [Validators.required]})
-  });
+  videoId?: number;
+  videoFormGroup!: FormGroup<VideoForm>;
+  
+  constructor() {
+    this.createVideoForm();
+  }
 
   ngOnInit() {
-    this.dataService.getCategories().pipe(takeUntil(this.destroy$)).subscribe((categories) => this.categories = categories);
-    this.dataService.authors$.pipe(takeUntil(this.destroy$)).subscribe((authors) => {
-      this.authors = authors;
+    this.videoId = Number(this.activatedRoute.snapshot.paramMap.get('id'));
+    if (this.videoId) this.isAdd = false;
+    combineLatest([this.dataService.getCategories(), this.dataService.authors$]).pipe(
+      takeUntil(this.destroy$),
+      map(([categories, authors]) => {
+        this.categories = categories;
+        this.authors = authors;
+        this.buildVideoForm();
+    })).subscribe();
+  }
+
+  buildVideoForm() {
+    if (this.videoId) {
+      const video = this.dataService.getProcessedVideoById(this.videoId);
+      const author = this.authors.find((author) => author.id === video?.authorId);
+      const categories = video?.categories.map(selectedCategory => this.categories.find((category) => category.name === selectedCategory)!.id);
+      this.createVideoForm(video?.name, author, categories);
+    } else {
+      this.createVideoForm();
+    }
+  }
+
+  createVideoForm(name?: string, author?: Author, categories?: number[]) {
+    this.videoFormGroup = new FormGroup<VideoForm>({
+      name: new FormControl<string>( name ?? '', {nonNullable: true, validators: [Validators.required]}),
+      author: new FormControl<Author>(author ?? this.authors[0], {nonNullable: true, validators: [Validators.required]}),
+      categories: new FormControl(categories ?? [], {nonNullable: true, validators: [Validators.required]})
     });
   }
 
   onSubmit() {
-    this.dataService.addVideoToSelectedAuthor(this.videoFormGroup.controls)
+    if (this.videoId) {
+      this.dataService.editSelectedVideo(this.videoFormGroup.controls, this.videoId)
       .pipe(takeUntil(this.destroy$))
-      .subscribe();
-    this.onCancel();
+      .subscribe(() => this.redirectToHome());
+    } else {
+      this.dataService.addVideoToSelectedAuthor(this.videoFormGroup.controls)
+      .pipe(takeUntil(this.destroy$))
+      .subscribe(() => this.redirectToHome());
+    }
   }
 
   onCancel() {
+    this.redirectToHome();
+  }
+
+  private redirectToHome() {
     this.router.navigate([''], { relativeTo: this.activatedRoute });
   }
 
   ngOnDestroy(): void {
-      this.destroy$.next();
-      this.destroy$.unsubscribe();
-  }
+    this.destroy$.next();
+    this.destroy$.unsubscribe();
+}
 }

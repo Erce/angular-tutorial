@@ -11,6 +11,6 @@ import { ButtonType } from '../shared/types/button-type';
 })
 export class ButtonComponent {
   @Input() buttonType = ButtonType.noStyle;
-  @Input() text: string = 'Button';
+  @Input() text = 'Button';
   @Input() disabled = false;
 }

@@ -8,7 +8,7 @@ export interface VideoForm {
     categories: FormControl<number[]>;
 }
 
-export interface AddVideoResponse {
+export interface PatchVideoResponse {
     id: number;
     name: string;
     videos: Video[];

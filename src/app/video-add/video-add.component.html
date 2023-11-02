@@ -1,5 +1,5 @@
 <div class="title">
-    <h1>{{ title }}</h1>
+    <h1>{{ isAdd ? 'Add Video' : 'Edit Video:' }} {{ videoFormGroup.value.name }}</h1>
 </div>
 <div class="container">
     <form [formGroup]="videoFormGroup">
