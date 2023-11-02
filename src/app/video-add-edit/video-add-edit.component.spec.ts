@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { VideoAddComponent } from './video-add.component';
+import { VideoAddComponent } from './video-add-edit.component';
 
 describe('VideoAddComponent', () => {
   let component: VideoAddComponent;

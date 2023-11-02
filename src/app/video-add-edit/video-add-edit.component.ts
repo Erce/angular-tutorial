@@ -21,10 +21,10 @@ import { ActivatedRoute, Router } from '@angular/router';
     ButtonComponent,
     ReactiveFormsModule,
   ],
-  templateUrl: './video-add.component.html',
-  styleUrls: ['./video-add.component.css']
+  templateUrl: './video-add-edit.component.html',
+  styleUrls: ['./video-add-edit.component.css']
 })
-export class VideoAddComponent implements OnInit, OnDestroy {
+export class VideoAddEditComponent implements OnInit, OnDestroy {
   dataService = inject(DataService);
   activatedRoute = inject(ActivatedRoute);
   router = inject(Router);
