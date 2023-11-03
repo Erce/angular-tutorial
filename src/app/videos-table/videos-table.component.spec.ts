@@ -11,7 +11,7 @@ describe('VideosTableComponent', () => {
 
   beforeEach(() => {
     const activatedRouteSpy = jasmine.createSpyObj('ActivatedRoute', [], {
-      snapshot: { paramMap: { get: (param: string) => null } },
+      snapshot: { paramMap: { get: () => null } },
     });
     const routerSpy = jasmine.createSpyObj('Router', ['navigate']);
     const dataServiceSpy = jasmine.createSpyObj('DataService', ['deleteVideo']);

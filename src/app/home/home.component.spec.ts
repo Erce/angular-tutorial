@@ -14,7 +14,7 @@ describe('HomeComponent', () => {
   beforeEach(() => {
     const dataServiceSpy = jasmine.createSpyObj('DataService', ['getVideos']);
     const activatedRouteSpy = jasmine.createSpyObj('ActivatedRoute', [], {
-      snapshot: { paramMap: { get: (param: string) => null } },
+      snapshot: { paramMap: { get: () => null } },
     });
 
     TestBed.configureTestingModule({
