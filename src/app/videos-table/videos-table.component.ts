@@ -41,7 +41,7 @@ export class VideosTableComponent {
   searchArg = '';
 
   onEdit(video: ProcessedVideo) {
-    this.router.navigate(['edit', video.id], { relativeTo: this.activatedRoute, state: video });
+    this.router.navigate(['edit', video.id], { relativeTo: this.activatedRoute });
   }
 
   onDelete(video: ProcessedVideo) {
