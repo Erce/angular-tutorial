@@ -23,7 +23,7 @@
         </div>
     </form>
     <div class="action-buttons">
-        <mi-button [buttonType]="buttonType.submit" [text]="'Submit'" [disabled]="videoFormGroup.status === 'INVALID'" (click)="onSubmit()"></mi-button>
+        <mi-button [buttonType]="buttonType.submit" [text]="'Submit'" [disabled]="videoFormGroup.invalid" (click)="onSubmit()"></mi-button>
         <mi-button [buttonType]="buttonType.cancel" [text]="'Cancel'" (click)="onCancel()"></mi-button>
     </div>
 </div>

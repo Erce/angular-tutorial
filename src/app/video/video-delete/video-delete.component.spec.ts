@@ -1,8 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { VideoDeleteComponent } from './video-delete.component';
 import { MatDialogRef, MAT_DIALOG_DATA, MatDialogModule } from '@angular/material/dialog';
-import { ProcessedVideo } from '../shared/data/interfaces';
-import { ButtonComponent } from '../button/button.component';
+
+import { ButtonComponent, ProcessedVideo } from '@mi/shared';
+import { VideoDeleteComponent } from './video-delete.component';
 
 describe('VideoDeleteComponent', () => {
   let component: VideoDeleteComponent;

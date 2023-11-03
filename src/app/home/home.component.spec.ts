@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { HomeComponent } from './home.component';
-import { VideoTableComponent } from '../video-table/video-table.component';
+import { VideoTableComponent } from '../video/video-table/video-table.component';
 import { DataService } from '../shared/data/data.service';
 import { ProcessedVideo } from '../shared/data/interfaces';
 import { ActivatedRoute } from '@angular/router';

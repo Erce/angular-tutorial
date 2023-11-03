@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { VideoTableComponent } from '../video-table/video-table.component';
+import { VideoTableComponent } from '../video/video-table/video-table.component';
 import { DataService } from '../shared/data/data.service';
 import { ProcessedVideo } from '../shared/data/interfaces';
 import { Subscription } from 'rxjs';

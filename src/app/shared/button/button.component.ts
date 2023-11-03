@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
-import { ButtonType } from '../shared/types/button-type';
+import { ButtonType } from '../types/button-type';
 
 @Component({
   selector: 'mi-button',

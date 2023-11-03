@@ -1,7 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { VideoTableComponent } from './video-table.component';
 import { ActivatedRoute, Router } from '@angular/router';
-import { DataService } from '../shared/data/data.service';
+
+import { DataService } from '@mi/shared';
+import { VideoTableComponent } from './video-table.component';
 
 describe('VideosTableComponent', () => {
   let component: VideoTableComponent;

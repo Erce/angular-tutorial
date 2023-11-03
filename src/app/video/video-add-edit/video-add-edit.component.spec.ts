@@ -1,10 +1,10 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ActivatedRoute, Router } from '@angular/router';
 
-import { VideoAddEditComponent } from './video-add-edit.component';
-import { DataService } from '../shared/data/data.service';
 import { of } from 'rxjs';
-import { Author, Category } from '../shared/data/interfaces';
+
+import { Author, Category, DataService } from '@mi/shared';
+import { VideoAddEditComponent } from './video-add-edit.component';
 
 describe('VideoAddEditComponent', () => {
   let component: VideoAddEditComponent;

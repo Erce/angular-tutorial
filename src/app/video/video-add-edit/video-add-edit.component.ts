@@ -1,15 +1,20 @@
 import { Component, OnDestroy, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Validators, ReactiveFormsModule, FormGroup, FormControl } from '@angular/forms';
-import { DataService } from '../shared/data/data.service';
-import { Subject, combineLatest, map, takeUntil } from 'rxjs';
-import { Author, Category } from '../shared/data/interfaces';
-import { VideoForm } from '../shared/video-add-edit/video-add-edit-interfaces';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { ButtonComponent } from '../button/button.component';
-import { ButtonType } from '../shared/types/button-type';
 import { ActivatedRoute, Router } from '@angular/router';
+
+import { Subject, combineLatest, map, takeUntil } from 'rxjs';
+
+import {
+  Author,
+  ButtonType,
+  ButtonComponent,
+  Category,
+  DataService,
+  VideoForm
+} from '@mi/shared';
 
 @Component({
   selector: 'mi-video-add',

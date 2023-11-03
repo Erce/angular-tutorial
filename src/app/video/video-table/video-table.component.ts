@@ -5,16 +5,19 @@ import {
   Input,
   inject 
 } from '@angular/core';
-import { ProcessedVideo } from '../shared/data/interfaces';
 import { CommonModule } from '@angular/common';
-import { ButtonComponent } from '../button/button.component';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ButtonType } from '../shared/types/button-type';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
-import { VideoDeleteComponent } from '../video-delete/video-delete.component';
-import { DataService } from '../shared/data/data.service';
 import { FormsModule } from '@angular/forms';
-import { SearchPipe } from '../shared/pipes/search.pipe';
+
+import {
+  ButtonType,
+  ButtonComponent,
+  DataService,
+  ProcessedVideo,
+  SearchPipe
+} from '@mi/shared';
+import { VideoDeleteComponent } from '../video-delete/video-delete.component';
 
 @Component({
   selector: 'mi-videos-table',
