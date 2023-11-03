@@ -31,6 +31,7 @@ export class VideoAddEditComponent implements OnInit, OnDestroy {
   private readonly destroy$ = new Subject<void>();
   protected readonly buttonType = ButtonType;
   isAdd = true;
+  videoName = '';
   categories: Category[] = [];
   authors: Author[] = [];
   videoId?: number;
@@ -55,6 +56,7 @@ export class VideoAddEditComponent implements OnInit, OnDestroy {
   buildVideoForm() {
     if (this.videoId) {
       const video = this.dataService.getProcessedVideoById(this.videoId);
+      this.videoName = video?.name ?? '';
       const author = this.authors.find((author) => author.id === video?.authorId);
       const categories = video?.categories.map(selectedCategory => this.categories.find((category) => category.name === selectedCategory)!.id);
       this.createVideoForm(video?.name, author, categories);
