@@ -3,7 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 
 import { VideoAddEditComponent } from './video-add-edit.component';
 import { DataService } from '../shared/data/data.service';
-import { Subscription, of } from 'rxjs';
+import { of } from 'rxjs';
 import { Author, Category } from '../shared/data/interfaces';
 
 describe('VideoAddEditComponent', () => {
@@ -12,7 +12,6 @@ describe('VideoAddEditComponent', () => {
   let dataService: jasmine.SpyObj<DataService>;
   let activatedRoute: jasmine.SpyObj<ActivatedRoute>;
   let router: Router;
-  let paramMapSubscription: Subscription;
 
   beforeEach(() => {
     const dataServiceSpy = jasmine.createSpyObj('DataService', 

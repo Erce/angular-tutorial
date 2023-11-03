@@ -25,7 +25,7 @@ export interface ProcessedVideo {
   categories: string[];
   releaseDate?: string;
   highestQuality: {
-    format_name: any,
+    format_name: string,
     size: number,
     res: string,
   };
