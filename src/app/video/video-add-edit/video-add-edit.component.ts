@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit, inject } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, Location } from '@angular/common';
 import { Validators, ReactiveFormsModule, FormGroup, FormControl } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -33,6 +33,7 @@ export class VideoAddEditComponent implements OnInit, OnDestroy {
   dataService = inject(DataService);
   activatedRoute = inject(ActivatedRoute);
   router = inject(Router);
+  location = inject(Location);
   private readonly destroy$ = new Subject<void>();
   protected readonly buttonType = ButtonType;
   isAdd = true;
@@ -49,6 +50,10 @@ export class VideoAddEditComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.videoId = Number(this.activatedRoute.snapshot.paramMap.get('id'));
     if (this.videoId) this.isAdd = false;
+    this.getData();
+  }
+
+  getData() {
     combineLatest([this.dataService.getCategories(), this.dataService.authors$]).pipe(
       takeUntil(this.destroy$),
       map(([categories, authors]) => {
@@ -82,20 +87,16 @@ export class VideoAddEditComponent implements OnInit, OnDestroy {
     if (this.videoId) {
       this.dataService.editSelectedVideo(this.videoFormGroup.controls, this.videoId)
       .pipe(takeUntil(this.destroy$))
-      .subscribe(() => this.redirectToHome());
+      .subscribe(() => this.location.back());
     } else {
       this.dataService.addVideoToSelectedAuthor(this.videoFormGroup.controls)
       .pipe(takeUntil(this.destroy$))
-      .subscribe(() => this.redirectToHome());
+      .subscribe(() => this.location.back());
     }
   }
 
   onCancel() {
-    this.redirectToHome();
-  }
-
-  private redirectToHome() {
-    this.router.navigate([''], { relativeTo: this.activatedRoute });
+    this.location.back();
   }
 
   ngOnDestroy(): void {
