@@ -1,11 +1,11 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { VideosTableComponent } from './videos-table.component';
+import { VideoTableComponent } from './video-table.component';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DataService } from '../shared/data/data.service';
 
 describe('VideosTableComponent', () => {
-  let component: VideosTableComponent;
-  let fixture: ComponentFixture<VideosTableComponent>;
+  let component: VideoTableComponent;
+  let fixture: ComponentFixture<VideoTableComponent>;
   let activatedRoute: jasmine.SpyObj<ActivatedRoute>;
   let router: jasmine.SpyObj<Router>;
 
@@ -28,7 +28,7 @@ describe('VideosTableComponent', () => {
     activatedRoute = TestBed.inject(ActivatedRoute) as jasmine.SpyObj<ActivatedRoute>;
     router = TestBed.inject(Router) as jasmine.SpyObj<Router>;
 
-    fixture = TestBed.createComponent(VideosTableComponent);
+    fixture = TestBed.createComponent(VideoTableComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

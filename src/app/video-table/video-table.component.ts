@@ -26,11 +26,11 @@ import { SearchPipe } from '../shared/pipes/search.pipe';
     FormsModule,
     SearchPipe
   ],
-  templateUrl: './videos-table.component.html',
-  styleUrls: ['./videos-table.component.css'],
+  templateUrl: './video-table.component.html',
+  styleUrls: ['./video-table.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class VideosTableComponent {
+export class VideoTableComponent {
   changeDetRef = inject(ChangeDetectorRef);
   activatedRoute = inject(ActivatedRoute);
   dataService = inject(DataService);
@@ -58,8 +58,7 @@ export class VideosTableComponent {
         this.dataService.deleteVideo(video.authorId, video.id).subscribe(
           (result) => { 
             if(result) {
-              const index = this.videos.findIndex((videoEl) => videoEl.id === video.id);
-              this.videos.splice(index, 1);
+              this.videos = this.videos.filter((item) => item.id !== video.id);
               this.changeDetRef.detectChanges();
             }
           }

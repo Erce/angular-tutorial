@@ -19,7 +19,7 @@
         <td>{{ video.name }}</td>
         <td>{{ video.author }}</td>
         <td>{{ video.categories.join(", ") }}</td>
-        <!-- TODO: It is unclear how to set format_name best, medium etc. -->
+        <!-- TODO: It was unclear how to set format_name best, medium etc. -->
         <td>{{ video.highestQuality.format_name }} {{ video.highestQuality.res }}</td>
         <td>{{ video.releaseDate | date: "dd.MM.yyyy" }}</td>
         <td class="options-column">

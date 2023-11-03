@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { HomeComponent } from './home.component';
-import { VideosTableComponent } from '../videos-table/videos-table.component';
+import { VideoTableComponent } from '../video-table/video-table.component';
 import { DataService } from '../shared/data/data.service';
 import { ProcessedVideo } from '../shared/data/interfaces';
 import { ActivatedRoute } from '@angular/router';
@@ -18,7 +18,7 @@ describe('HomeComponent', () => {
     });
 
     TestBed.configureTestingModule({
-      imports: [VideosTableComponent],
+      imports: [VideoTableComponent],
       providers: [
         { provide: DataService, useValue: dataServiceSpy },
         { provide: ActivatedRoute, useValue: activatedRouteSpy },

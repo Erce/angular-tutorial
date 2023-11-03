@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { VideosTableComponent } from '../videos-table/videos-table.component';
+import { VideoTableComponent } from '../video-table/video-table.component';
 import { DataService } from '../shared/data/data.service';
 import { ProcessedVideo } from '../shared/data/interfaces';
 import { Subscription } from 'rxjs';
@@ -8,7 +8,7 @@ import { Subscription } from 'rxjs';
 @Component({
   selector: 'mi-home',
   standalone: true,
-  imports: [CommonModule, VideosTableComponent],
+  imports: [CommonModule, VideoTableComponent],
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
