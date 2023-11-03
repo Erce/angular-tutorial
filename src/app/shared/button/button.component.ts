@@ -10,6 +10,7 @@ import { ButtonType } from '../types/button-type';
   styleUrls: ['./button.component.css'],
 })
 export class ButtonComponent {
+  /** Please give ButtonType for button style */
   @Input() buttonType = ButtonType.noStyle;
   @Input() text = 'Button';
   @Input() disabled = false;

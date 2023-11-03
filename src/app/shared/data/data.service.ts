@@ -37,6 +37,7 @@ export class DataService {
     }));
   }
 
+  /** Restructure Authors and Categories to get a videos list fitting the table structure */
   getVideos(): Observable<ProcessedVideo[]> {
     return combineLatest([this.getAuthors(), this.getCategories()]).pipe(
       map(([authors, categories]) => {
@@ -60,10 +61,12 @@ export class DataService {
     );
   }
 
+  /** Get video by ID from structured video list */
   getProcessedVideoById(id: number): ProcessedVideo | undefined {
     return this.videos.getValue().find((video) => video.id === id);
   }
 
+  /** Find the highest quality depending on the biggest size and resolution */
   getTheHighestQuality(formats: {[key: string]: { res: string, size: number}}):
   { id: number, format_name: string, res: string, size: number } {
     const max = {id: 0, format_name: '', res: '', size: 0};
@@ -79,6 +82,7 @@ export class DataService {
     return max;
   }
 
+  /** Add video by adding the video to selected Author and patching the selected Author */
   addVideoToSelectedAuthor(videoContols: VideoForm): Observable<PatchVideoResponse> {
     const author = {...videoContols.author.value};
     const videoId = this.maxId.getValue() + 1
@@ -95,6 +99,8 @@ export class DataService {
     return this.http.patch<PatchVideoResponse>(`${API}/authors/${author.id}`, author);
   }
 
+  /** Edit video by patching Author with the new data or 
+   * moving the video and patching the previous Author and selected Author */
   editSelectedVideo(videoContols: VideoForm, existingVideoId: number) {
     const newAuthor = {...videoContols.author.value};
     const existingVideo = this.getProcessedVideoById(existingVideoId);
@@ -108,8 +114,11 @@ export class DataService {
         }
       });
 
+      // If the Author didn't change, we can just patch the same Author
       return this.http.put<PatchVideoResponse>(`${API}/authors/${existingVideo.authorId}`, newAuthor);
-    } else {  
+    } else {
+      // If the Author changed, we must move the video under the new Author, 
+      // and remove the video from previous Author
       moveResult = this.moveVideoToAnotherAuthor(
         newAuthor,
         videoContols.categories.value,
@@ -122,6 +131,7 @@ export class DataService {
                     this.http.patch<PatchVideoResponse>(`${API}/authors/${existingVideo?.authorId}`, moveResult?.existingAuthor));
   }
 
+  /** Move function by removing video from the previous Author and adding it to the new Author */
   private moveVideoToAnotherAuthor(newAuthor: Author, categories: number[], name: string, existingVideo?: ProcessedVideo) {
     if (existingVideo) {
       const existingAuthor = this.getAuthorWithId(existingVideo.authorId);
@@ -142,6 +152,7 @@ export class DataService {
     return this.authors.getValue().find((author) => author.id === id);
   }
 
+  /** Get unprocessed video by id */
   private getVideoById(author: Author, id: number): Video | undefined {
     return author.videos.find((video) => video.id === id);
   }
@@ -150,6 +161,7 @@ export class DataService {
     return author.videos.filter((video) => video.id !== id);
   }
 
+  /** Delete video by removing the video from the Author and patching the Author data */
   deleteVideo(authorId: number, videoId: number) {
     const author = this.getAuthorWithId(authorId);
     if (author) author.videos = this.removeVideoFromArray(author, videoId);
