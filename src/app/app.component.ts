@@ -8,4 +8,5 @@ import { ButtonType } from './shared/types/button-type';
 })
 export class AppComponent {
   protected readonly buttonType = ButtonType;
+  title = 'mi-afec';
 }
