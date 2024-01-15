@@ -1,5 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Location } from '@angular/common';
 
 import { of } from 'rxjs';
 
@@ -11,6 +12,7 @@ describe('VideoAddEditComponent', () => {
   let fixture: ComponentFixture<VideoAddEditComponent>;
   let dataService: jasmine.SpyObj<DataService>;
   let activatedRoute: jasmine.SpyObj<ActivatedRoute>;
+  let location: jasmine.SpyObj<Location>;
   let router: Router;
 
   beforeEach(() => {
@@ -23,17 +25,19 @@ describe('VideoAddEditComponent', () => {
         },
       },
     };
+    const locationSpy = jasmine.createSpyObj(Location, ['back']);
 
     TestBed.configureTestingModule({
       providers: [
         { provide: DataService, useValue: dataServiceSpy },
         { provide: ActivatedRoute, useValue: activatedRouteStub },
+        { provide: Location, useValue: locationSpy}
       ],
     });
 
     dataService = TestBed.inject(DataService) as jasmine.SpyObj<DataService>;
-    activatedRoute = TestBed.inject(ActivatedRoute) as jasmine.SpyObj<ActivatedRoute>;
     router = TestBed.inject(Router);
+    location = TestBed.inject(Location) as jasmine.SpyObj<Location>;
     fixture = TestBed.createComponent(VideoAddEditComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
@@ -63,10 +67,9 @@ describe('VideoAddEditComponent', () => {
   it('should cancel and navigate back', () => {
     dataService.getCategories.and.returnValue(of([] as Category[]));
     dataService.getAuthors.and.returnValue(of([] as Author[]));
-    const navigateSpy = spyOn(router, 'navigate');
 
     component.onCancel();
-    expect(navigateSpy).toHaveBeenCalledWith([''], { relativeTo: activatedRoute });
+    expect(location.back).toHaveBeenCalled();
   });
 
   it('should load categories and authors on initialization', () => {

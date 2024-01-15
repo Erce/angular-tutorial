@@ -69,13 +69,17 @@ export class DataService {
   /** Find the highest quality depending on the biggest size and resolution */
   getTheHighestQuality(formats: {[key: string]: { res: string, size: number}}):
   { id: number, format_name: string, res: string, size: number } {
-    const reducedMax = Object.entries(formats).reduce((newObj, [key, value]) => {
-      if (newObj[1].size > value.size) return newObj;
-      else if (newObj[1].size === value.size) return (Number(newObj[1].res.replace('p', '')) > Number(value.res.replace('p', ''))) ? newObj : [key, value];
+    const reducedMax = Object.entries(formats).reduce((max, [key, value]) => {
+      if (max[1].size > value.size) return max;
+      else if (max[1].size === value.size) return this.getVideoRes(max[1].res) > this.getVideoRes(value.res) ? max : [key, value];
       else return [key, value];
     });
 
     return {id: 0, format_name: reducedMax[0], res: reducedMax[1].res, size: reducedMax[1].size};
+  }
+
+  private getVideoRes(res: string): number {
+    return Number(res.replace('p', ''));
   }
 
   /** Add video by adding the video to selected Author and patching the selected Author */
